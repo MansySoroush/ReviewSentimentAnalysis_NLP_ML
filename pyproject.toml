@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "review_sentiment_analysis"
+version = "0.0.1"
+description = "A machine learning project to analyze a review sentiment"
+authors = [{name = "Mansy", email = "mansy.soroush@gmail.com"}]
+dependencies = [
+    "ipykernel",
+    "pandas",
+    "numpy",
+    "seaborn",
+    "matplotlib",
+    "scikit-learn",
+    "catboost",
+    "xgboost",
+    "Flask",
+    "dill"
+]
