@@ -1,6 +1,9 @@
 ipykernel
 pandas
 numpy
+nltk
+beautifulsoup4
+gensim
 seaborn
 matplotlib
 scikit-learn
