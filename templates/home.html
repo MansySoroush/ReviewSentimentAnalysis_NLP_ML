@@ -1,0 +1,23 @@
+<html>
+    <body>
+        <div class="login">
+            <h1>Review Sentiment Analysis</h1>
+
+            <form action="{{ url_for('predict_datapoint')}}" method="post">
+                <h2><legend>Review Sentiment Predictor</legend></h2>
+
+                <div class="mb-3">
+                    <label class="form-label">Review Text</label>
+                    <input class="form-control" type="text" name="review_text"
+                        placeholder="Enter the review text" style="width: 500px; "/>
+                </div>
+
+                <div class="mb-3">
+                    <input class="btn btn-primary" type="submit" value="Predict the review text" required />
+                </div>
+            </form>
+
+            <h2>THE  prediction is {{results}}</h2>
+        </div>
+    <body>
+</html>

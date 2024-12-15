@@ -29,6 +29,7 @@ class ModelTrainerConfig:
 
 @dataclass
 class PredictPipelineConfig:
+    w2v_model_estimator_path: str = os.path.join(ARTIFACT_FOLDER_PATH, W2V_MODEL_ESTIMATOR_FILE_NAME)
     Y_preprocessor_obj_file_path = os.path.join(ARTIFACT_FOLDER_PATH, Y_PREPROCESSOR_FILE_NAME)
     model_path = os.path.join(ARTIFACT_FOLDER_PATH,TRAINED_MODEL_FILE_NAME)
 

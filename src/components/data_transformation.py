@@ -82,6 +82,11 @@ class DataTransformation:
             train_arr = np.c_[X_train, np.array(y_train)]
             test_arr = np.c_[X_test, np.array(y_test)]
 
+            save_object(
+                file_path=self.data_transformation_config.Y_preprocessor_obj_file_path,
+                obj=y_preprocessing_obj
+            )
+
             return (
                 train_arr,
                 test_arr,

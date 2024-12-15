@@ -9,6 +9,8 @@ from src.w2v_estimator import Word2VecEstimator
 from src.configs.configurations import WeightScoreConfig
 from sklearn.model_selection import RandomizedSearchCV
 from sklearn.metrics import make_scorer, accuracy_score, precision_score, recall_score, f1_score 
+from nltk import sent_tokenize
+from gensim.utils import simple_preprocess
 
 def save_object(file_path, obj):
     try:
@@ -134,3 +136,11 @@ def calculate_score(metrics, weights=None):
 def meets_thresholds(metrics, thresholds):
     return all(metrics[metric] >= threshold for metric, threshold in thresholds.items())
 
+def extract_corpus(data_set):
+    reviews = data_set['reviewText'].to_numpy()
+    corpus=[]
+    for sent1 in reviews:
+        sent_token = sent_tokenize(sent1)
+        for sent2 in sent_token:
+            corpus.append(simple_preprocess(sent2))
+    return corpus

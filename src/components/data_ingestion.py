@@ -6,10 +6,7 @@ import numpy as np
 from src.exception import CustomException
 from src.logger import logging
 from src.configs.configurations import DataIngestionConfig
-from src.utils import evaluate_w2v_model, save_object
-
-from nltk import sent_tokenize
-from gensim.utils import simple_preprocess
+from src.utils import evaluate_w2v_model, save_object, extract_corpus
 
 class DataIngestion:
     def __init__(self):
@@ -26,7 +23,7 @@ class DataIngestion:
             df.to_csv(self.ingestion_config.raw_data_path, index=False, header=True)
 
             logging.info("Extract corpus from data-frame")
-            corpus = self.extract_corpus(df)
+            corpus = extract_corpus(df)
 
             logging.info("Hyperparameter tuning to find best W2V estimator")
             w2v_param = self.get_w2v_param()
@@ -48,16 +45,7 @@ class DataIngestion:
         
         except Exception as e:
             raise CustomException(e,sys)
-        
-    def extract_corpus(self, data_set):
-        reviews = data_set['reviewText'].to_numpy()
-        corpus=[]
-        for sent1 in reviews:
-            sent_token = sent_tokenize(sent1)
-            for sent2 in sent_token:
-                corpus.append(simple_preprocess(sent2))
-        return corpus
-    
+            
     def get_w2v_param(self):
         param_dict = {
             'vector_size': [50, 100, 150, 300],
